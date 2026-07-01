@@ -1,0 +1,185 @@
+Portfolio BackTrack - Requirements and Plan of Action
+
+Project Overview:
+Portfolio BackTrack is a modern fintech web application for investors to test historical performance of custom index fund portfolios over any historical period.
+
+Goals:
+- Professional financial analytics platform feel
+- Responsive, polished UI with animations and modern design
+- Support portfolio building, historical testing, advanced analytics, and future expansion
+- Use realistic mock data today with clean architecture for API/database integration later
+
+Tech Stack:
+- React
+- Next.js (latest App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Recharts
+- Framer Motion
+- React Hook Form
+- Zod validation
+- TanStack Query
+- Zustand
+
+Core Features:
+1. Portfolio Builder
+   - Total investment amount
+   - Investment type: Lump Sum or SIP
+   - SIP frequency: Monthly, Quarterly, Yearly
+   - Allocation via sliders and percentage inputs
+   - Allocation must total 100%
+
+2. Date Selection
+   - Investment start date
+   - Investment end date
+   - Support any historical period
+
+3. Fund Selection
+   - Dropdowns for Large Cap, Mid Cap, Small Cap
+   - Example funds for each category
+   - Start with mock data; design for future API flow
+
+4. Rebalancing
+   - No rebalancing
+   - Monthly
+   - Quarterly
+   - Yearly
+
+5. Analysis Dashboard
+   - Portfolio summary card with metrics
+   - Charts for growth, allocation, performance, drawdown, rolling returns, annual returns, heatmap, allocation over time, comparison, investment vs profit
+
+6. Metrics
+   - CAGR, XIRR, Absolute Return, Profit, Annual Return
+   - Rolling Return, Volatility, Standard Deviation
+   - Sharpe Ratio, Sortino Ratio, Max Drawdown
+   - Best Year, Worst Year, Win Rate, Average Returns
+   - Positive/Negative Months, Recovery Time
+
+7. Comparison Mode
+   - Compare Portfolio A vs Portfolio B with different allocations, dates, funds
+   - Show charts side-by-side
+
+8. Future Placeholder Pages
+   - Monte Carlo simulation page
+   - Saved scenarios page
+   - Export report placeholders (PDF, CSV, PNG)
+
+9. UI Requirements
+   - Modern fintech visual design
+   - Dark / light mode
+   - Glassmorphism cards, gradients, rounded corners
+   - Professional typography and animations
+   - Loading skeletons, responsive layouts
+
+10. Pages
+   - Landing
+   - Features
+   - About
+   - Portfolio Builder
+   - Analysis Dashboard
+   - Saved Scenarios
+   - Documentation
+   - Settings
+   - 404
+
+11. Navigation
+   - Sticky navbar
+   - Footer
+   - Dashboard sidebar
+   - Breadcrumbs
+   - Command palette (Ctrl + K)
+   - Search
+
+Architecture:
+- app/
+- components/
+- hooks/
+- lib/
+- services/
+- types/
+- utils/
+- charts/
+- store/
+- data/
+- public/
+
+Data Layer:
+- Realistic historical mock NAV data for Large Cap, Mid Cap, Small Cap
+- 20+ years of monthly data
+- Clean data abstraction for future API replacement
+
+Calculation Utilities:
+- calculateCAGR()
+- calculateXIRR()
+- calculateDrawdown()
+- calculateRollingReturns()
+- calculateVolatility()
+- calculateSharpeRatio()
+- calculatePortfolioValue()
+- calculateAnnualReturns()
+- calculate other portfolio return and risk metrics
+
+SDLC Alignment:
+- Requirements: fully capture business goals, data needs, user flows, pages, and metrics.
+- Design: define architecture, folder structure, UI system, data model, component contracts, and mock API boundaries.
+- Implementation: build incrementally with clear milestones, version control, and modular layers.
+- Verification: use manual QA, review each page and calculation, add testable utilities and consistent validation.
+- Deployment/Release: prepare a stable build, test responsiveness, and confirm the app can be hosted later.
+- Maintenance: keep architecture clean, document key modules, and clearly separate future placeholders.
+
+Plan of Action:
+Phase 0 – Planning & Requirements Review
+- Refine requirements into deliverables and acceptance criteria
+- Define MVP scope: builder, dashboard, landing, 404 + core analytics
+- Create checkpoints for each major milestone and roll-back points
+- Agree on package manager and tooling strategy
+
+Phase 1 – Setup & Architecture
+- Scaffold Next.js project in workspace
+- Install Tailwind, shadcn/ui, Zustand, React Hook Form, Zod, Recharts, Framer Motion, TanStack Query
+- Establish folder structure and base app layout
+- Create story-style documentation of page structure and component responsibilities
+
+Phase 2 – Data Model & Calculation Engine
+- Build realistic mock historical NAV data for Large/Mid/Small cap
+- Create data abstraction layer that can be swapped with API calls
+- Implement calculation utilities with testable inputs and outputs
+- Validate core metrics: CAGR, XIRR, drawdown, annual returns, volatility, Sharpe
+
+Phase 3 – Core Workflow UI
+- Build Portfolio Builder form and state management
+- Implement date selection, fund selection, allocation controls, and rebalancing options
+- Add validation rules and user feedback for allocation totals and required fields
+- Create the analyze button with a loading/transition state
+
+Phase 4 – Analysis Dashboard
+- Build summary cards and core charts
+- Add Portfolio Growth line chart and Allocation pie chart
+- Add Annual Returns bar chart and portfolio metrics panel
+- Ensure charts and cards are responsive and visually polished
+
+Phase 5 – Extended Analytics + UX Polish (Complete)
+- Add drawdown chart, rolling returns, monthly heatmap, allocation-over-time stacked area
+- Build comparison mode and scenario placeholders
+- Add command palette, breadcrumbs, search, and page nav polish
+- Implement dark/light theme, animation transitions, skeleton loaders, and mobile UX
+
+Phase 6 – Review & Stabilize (In progress)
+- Review code, clean architecture, and remove hard-coded values
+- Confirm reusable components, proper typing, and data-driven design
+- Test key user flows manually and ensure the app feels professional
+- Document next-phase features: API integration, auth, exports, Monte Carlo, scenario saving
+
+Current status:
+- Active stabilization is underway. The dashboard chart suite and comparison summary are integrated, builder cleanup is complete, and the app passes lint/build validation.
+- Remaining Phase 6 work includes adding the saved-scenarios comparison view, improving SIP/rebalance simulation, and refining data-driven chart labels and messaging.
+- Next high-priority actions: wire the saved scenarios page, complete SIP and rebalancing logic, add export/report placeholder flows, and prepare a clean hostable MVP build.
+
+Backtracking and Quality Control:
+- Use small commits for each phase to make roll-back easy
+- Keep each page and data utility independent
+- Version requirements in `requirements_plan.txt` with changes clearly marked
+- Flag any future feature as "placeholder" and avoid mixing it into the MVP flow
+- Review each phase before moving to the next one to reduce rework

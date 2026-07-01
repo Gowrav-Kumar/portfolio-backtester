@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio BackTester</title>
+  <style>
+    body{font-family:Inter,Segoe UI,system-ui,Arial,sans-serif;background:#0f172a;color:#e6eef8;margin:0;padding:24px}
+    .wrap{max-width:900px;margin:48px auto;padding:28px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    h1{margin:0 0 8px;font-size:28px}
+    p{margin:8px 0;color:#bcd3ee}
+    a{color:#9aa8ff}
+    .btn{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:10px;background:#6366f1;color:white;text-decoration:none;font-weight:600}
+    pre{background:#07102a;padding:12px;border-radius:8px;color:#bcd3ee;overflow:auto}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Portfolio BackTester</h1>
+    <p>A small Next.js app to experiment with portfolio allocations and historical NAV data. This repository contains the app source.</p>
+
+    <h3>Quick links</h3>
+    <ul>
+      <li>Run locally: <code>npm run dev</code></li>
+      <li>Open the builder page: <a href="/builder">/builder</a> (when running locally)</li>
+    </ul>
+
+    <h3>Publish to GitHub Pages</h3>
+    <p>This project ships a lightweight static landing page under <code>docs/</code>. GitHub Pages can publish that folder as a site at <strong>&lt;your-username&gt;.github.io/&lt;repo&gt;</strong>.</p>
+
+    <p>After creating a GitHub repo and pushing the code, enable Pages from <code>Settings → Pages → Branch: main / Folder: /docs</code>.</p>
+
+    <h3>Commands</h3>
+    <pre>
+# initialize repo (if you want me to run these, tell me)
+git init
+git add -A
+git commit -m "chore: add docs landing page for GitHub Pages"
+# create remote, replace <OWNER> and <REPO>
+git remote add origin git@github.com:<OWNER>/<REPO>.git
+git branch -M main
+git push -u origin main
+    </pre>
+
+    <a class="btn" href="#publish">Instructions</a>
+
+    <h3 style="margin-top:18px">Notes</h3>
+    <p>If you prefer automatic deployments or a full site, we can add a GitHub Actions workflow to build and deploy the app's static export, but Next.js apps generally require Vercel or GitHub Actions with an export step.</p>
+  </div>
+</body>
+</html>
