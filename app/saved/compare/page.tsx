@@ -58,9 +58,9 @@ export default function SavedComparePage() {
   if (!savedScenarios.length) {
     return (
       <PageShell title="Compare saved scenarios" description="Create and save scenarios to compare them side-by-side.">
-        <div className="rounded-[2rem] border border-white/10 bg-slate-900/80 p-10">
-          <h1 className="text-4xl font-semibold text-white">Compare saved scenarios</h1>
-          <p className="mt-4 text-base text-slate-300">You don't have any saved scenarios yet. Save an analysis from the builder to compare scenarios.</p>
+        <div className="rounded-[2rem] border p-10" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)' }}>
+          <h1 className="text-4xl font-semibold" style={{ color: 'var(--text)' }}>Compare saved scenarios</h1>
+          <p className="mt-4 text-base" style={{ color: 'var(--muted)' }}>You don't have any saved scenarios yet. Save an analysis from the builder to compare scenarios.</p>
           <Link href="/builder" className="mt-8 inline-flex rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-400">
             Build a new scenario
           </Link>
@@ -73,14 +73,15 @@ export default function SavedComparePage() {
     <PageShell title="Compare saved scenarios" description="Side-by-side scenario comparison.">
       <div className="space-y-6">
         <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-3xl border border-white/10 bg-slate-950/90 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Primary scenario</p>
+        <div className="rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)' }}>
+          <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Primary scenario</p>
           <label className="mt-3 block">
             <select
               aria-label="Primary scenario"
               value={primaryId}
               onChange={(e) => setPrimaryId(e.target.value)}
-              className="mt-2 w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none"
+              className="mt-2 w-full rounded-3xl px-4 py-3 outline-none transition"
+              style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
             >
               {savedScenarios.map((s) => (
                 <option key={s.id} value={s.id}>{s.name}</option>
@@ -93,25 +94,26 @@ export default function SavedComparePage() {
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl bg-slate-900/80 p-4">
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Investment</p>
-              <p className="mt-2 text-xl font-semibold text-white">₹{primary?.portfolio?.totalInvestment?.toLocaleString('en-IN') ?? '—'}</p>
+            <div className="rounded-2xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+              <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Investment</p>
+              <p className="mt-2 text-xl font-semibold" style={{ color: 'var(--text)' }}>₹{primary?.portfolio?.totalInvestment?.toLocaleString('en-IN') ?? '—'}</p>
             </div>
-            <div className="rounded-2xl bg-slate-900/80 p-4">
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Allocation</p>
+            <div className="rounded-2xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+              <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Allocation</p>
               <PortfolioPieChart data={primaryAlloc} label="Allocation" />
             </div>
           </div>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-slate-950/90 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Comparison scenario</p>
+        <div className="rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)' }}>
+          <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Comparison scenario</p>
           <label className="mt-3 block">
             <select
               aria-label="Comparison scenario"
               value={compareId}
               onChange={(e) => setCompareId(e.target.value)}
-              className="mt-2 w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none"
+              className="mt-2 w-full rounded-3xl px-4 py-3 outline-none transition"
+              style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
             >
               <option value="">Select scenario</option>
               {savedScenarios.map((s) => (
@@ -127,12 +129,12 @@ export default function SavedComparePage() {
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl bg-slate-900/80 p-4">
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Investment</p>
-              <p className="mt-2 text-xl font-semibold text-white">₹{compare?.portfolio?.totalInvestment?.toLocaleString('en-IN') ?? '—'}</p>
+            <div className="rounded-2xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+              <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Investment</p>
+              <p className="mt-2 text-xl font-semibold" style={{ color: 'var(--text)' }}>₹{compare?.portfolio?.totalInvestment?.toLocaleString('en-IN') ?? '—'}</p>
             </div>
-            <div className="rounded-2xl bg-slate-900/80 p-4">
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Allocation</p>
+            <div className="rounded-2xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+              <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Allocation</p>
               <PortfolioPieChart data={compareAlloc} label="Allocation" />
             </div>
           </div>
@@ -140,16 +142,16 @@ export default function SavedComparePage() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-3">
-        <div className="rounded-2xl bg-slate-900/80 p-4">
-          <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Primary value</p>
-          <p className="mt-2 text-lg font-semibold text-white">₹{primaryLast.toLocaleString('en-IN')}</p>
+        <div className="rounded-2xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+          <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Primary value</p>
+          <p className="mt-2 text-lg font-semibold" style={{ color: 'var(--text)' }}>₹{primaryLast.toLocaleString('en-IN')}</p>
         </div>
-        <div className="rounded-2xl bg-slate-900/80 p-4">
-          <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Comparison value</p>
-          <p className="mt-2 text-lg font-semibold text-white">₹{compareLast ? compareLast.toLocaleString('en-IN') : '—'}</p>
+        <div className="rounded-2xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+          <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Comparison value</p>
+          <p className="mt-2 text-lg font-semibold" style={{ color: 'var(--text)' }}>₹{compareLast ? compareLast.toLocaleString('en-IN') : '—'}</p>
         </div>
-        <div className="rounded-2xl bg-slate-900/80 p-4">
-          <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Relative</p>
+        <div className="rounded-2xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+          <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Relative</p>
           <p className={`mt-2 text-lg font-semibold ${relative >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>{relative ? `${relative.toFixed(2)}%` : '—'}</p>
         </div>
       </div>

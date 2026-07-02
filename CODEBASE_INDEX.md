@@ -24,6 +24,7 @@
 - `app/builder/builder-form.tsx` — portfolio builder form, validation, simulation, and save logic
 - `app/dashboard/page.tsx` — analytics dashboard with chart panels, comparison controls, and summary cards
 - `app/saved/page.tsx` — saved scenario list, load, compare, and delete actions
+- `app/saved/compare/page.tsx` — saved scenario comparison page
 - `app/settings/page.tsx` — placeholder settings page
 - `app/docs/page.tsx` — documentation page placeholder
 - `app/layout.tsx` — root layout and HTML metadata

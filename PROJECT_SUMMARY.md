@@ -106,7 +106,7 @@ Status: The app has moved into Phase 6 stabilization. Core analytics and dashboa
 
 ## Known Focus Areas Remaining
 
-- Build the saved scenarios comparison page and improve scenario navigation.
+- Refine the existing saved scenarios comparison page and improve scenario navigation.
 - Complete SIP and periodic rebalancing simulation logic in the builder and portfolio engine.
 - Add export/report placeholders for CSV, PDF, and image output.
 - Improve mock NAV realism and prepare the data layer for future API integration.

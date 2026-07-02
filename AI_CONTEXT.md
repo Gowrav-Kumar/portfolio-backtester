@@ -34,6 +34,7 @@ Portfolio BackTrack is a fintech-style portfolio backtesting web app built with 
 ## Current Implementation Notes
 - The dashboard uses client-side query parsing in `useEffect` to support `?compare=<id>` behavior.
 - The `saved` page supports loading and deleting scenarios, and provides compare links to the dashboard.
+- A dedicated saved scenario comparison route exists at `app/saved/compare/page.tsx`.
 - `app/builder/builder-form.tsx` is the primary builder form; it uses `react-hook-form` + `zod` for validation and now uses controlled `Controller` inputs with `onInput` to ensure allocation values update immediately while typing/backspacing. The allocation total logic was made resilient to floating point noise and moved visually into the Fund allocations header.
 - Calendar selection for dates was changed from native `<input type="date">` to a themed popup calendar with month/year quick selectors.
 - Temporary debug hooks were used during development but have been removed; recent builds succeeded.

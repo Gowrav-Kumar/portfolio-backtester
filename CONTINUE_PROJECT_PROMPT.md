@@ -37,7 +37,7 @@ Note: Avoid re-introducing temporary debug hooks and update existing docs in pla
 ## Current implementation state
 
 ## Priority work items
-1. Build a dedicated saved scenario comparison page or dashboard tab.
+1. Enhance the existing saved scenario comparison page and review compare UI flows.
 2. Improve portfolio simulation accuracy for SIP and rebalancing.
 3. Add export/report placeholders for CSV/PDF/PNG flows.
 4. Extend historical nav data realism or add API abstraction.

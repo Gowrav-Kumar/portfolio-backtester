@@ -27,6 +27,7 @@ This folder contains route-driven pages implemented with Next.js App Router.
 - `builder/builder-form.tsx` — builder form and simulation logic
 - `dashboard/page.tsx` — analytics dashboard route
 - `saved/page.tsx` — saved scenario manager route
+- `saved/compare/page.tsx` — saved scenario comparison route
 - `settings/page.tsx` — placeholder settings route
 - `docs/page.tsx` — placeholder docs route
 - `not-found.tsx` — custom 404 page

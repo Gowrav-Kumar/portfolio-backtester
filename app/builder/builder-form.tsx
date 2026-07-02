@@ -5,7 +5,7 @@ import { useForm, useFieldArray, Controller } from 'react-hook-form';
 import { CalendarDays } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PortfolioFormValues } from '@/types/portfolio';
-import { allocationSchema, formSchema } from '@/lib/form';
+import { formSchema } from '@/lib/form';
 import { getFundSeries } from '@/data/mock-nav';
 import {
   simulatePortfolioSeries,
@@ -241,30 +241,32 @@ export function BuilderForm() {
     <div className="space-y-8">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       <div className="grid gap-6 sm:grid-cols-2">
-        <label className="space-y-2 text-sm text-slate-200">
+        <label className="space-y-2 text-sm" style={{ color: 'var(--muted)' }}>
           <span className="font-medium">Scenario name</span>
           <input
             type="text"
-            className="w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none transition focus:border-brand-500"
+            className="w-full rounded-3xl px-4 py-3 outline-none transition"
+            style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
             {...register('scenarioName')}
           />
           {errors.scenarioName && <p className="text-xs text-rose-400">{errors.scenarioName.message}</p>}
         </label>
 
-        <label className="space-y-2 text-sm text-slate-200">
+        <label className="space-y-2 text-sm" style={{ color: 'var(--muted)' }}>
           <span className="font-medium">Total investment (₹)</span>
           <input
             type="number"
             step="1000"
-            className="w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none transition focus:border-brand-500"
+            className="w-full rounded-3xl px-4 py-3 outline-none transition"
+            style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
             {...register('totalInvestment', { valueAsNumber: true })}
           />
           {errors.totalInvestment && <p className="text-xs text-rose-400">{errors.totalInvestment.message}</p>}
         </label>
 
-        <label className="space-y-2 text-sm text-slate-200">
+        <label className="space-y-2 text-sm" style={{ color: 'var(--muted)' }}>
           <span className="font-medium">Investment type</span>
-          <select className="w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100" {...register('investmentType')}>
+          <select className="w-full rounded-3xl px-4 py-3" style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }} {...register('investmentType')}>
             <option value="lumpSum">Lump Sum</option>
             <option value="sip">SIP</option>
           </select>
@@ -272,7 +274,7 @@ export function BuilderForm() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 relative">
-        <label className="relative space-y-2 text-sm text-slate-200">
+        <label className="relative space-y-2 text-sm" style={{ color: 'var(--muted)' }}>
           <span className="font-medium">Start date</span>
           <div className="relative">
             <button
@@ -282,24 +284,27 @@ export function BuilderForm() {
                 setActiveDateField('start');
                 setCalendarReference(startDateValue ? new Date(startDateValue) : new Date());
               }}
-              className="w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-left text-slate-100 transition hover:border-brand-500"
+              className="w-full rounded-3xl px-4 py-3 text-left transition"
+              style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
             >
               <div className="flex items-center justify-between gap-2">
                 <span>{formatDateLabel(startDateValue)}</span>
-                <CalendarDays className="h-5 w-5 text-slate-400" />
+                <CalendarDays className="h-5 w-5" style={{ color: 'var(--muted)' }} />
               </div>
             </button>
             <input type="hidden" {...register('startDate')} />
             {calendarOpen && activeDateField === 'start' ? (
               <div
                 ref={datePanelRef}
-                className="absolute left-0 top-full z-20 mt-3 w-full max-w-md rounded-3xl border border-brand-500 bg-slate-950/95 p-3 shadow-[0_24px_60px_rgba(15,23,42,0.35)]"
+                className="absolute left-0 top-full z-20 mt-3 w-full max-w-md rounded-3xl p-3 shadow-[0_24px_60px_rgba(15,23,42,0.35)]"
+                style={{ border: '1px solid var(--border)', background: 'var(--surface-2)', color: 'var(--text)' }}
               >
-                <div className="mb-3 grid gap-2 rounded-3xl border border-slate-700 bg-slate-900/80 p-3 text-slate-200 sm:grid-cols-[auto_1fr_auto] sm:items-center">
+                <div className="mb-3 grid gap-2 rounded-3xl p-3 sm:grid-cols-[auto_1fr_auto] sm:items-center" style={{ border: '1px solid var(--border)', background: 'var(--surface)' }}>
                   <button
                     type="button"
                     onClick={() => moveCalendar('prev')}
-                    className="rounded-xl border border-slate-700 bg-slate-800/80 px-2 py-1.5 text-slate-300 hover:border-brand-500 hover:text-white"
+                    className="rounded-xl px-2 py-1.5"
+                    style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--muted)' }}
                   >
                     ‹
                   </button>
@@ -308,10 +313,11 @@ export function BuilderForm() {
                       <select
                         value={calendarMonth}
                         onChange={(event) => setCalendarReference(new Date(calendarYear, Number(event.target.value), 1))}
-                        className="rounded-2xl border border-slate-700 bg-slate-900/80 px-2 py-1.5 text-xs text-slate-100 outline-none transition focus:border-brand-500"
+                        className="rounded-2xl px-2 py-1.5 text-xs outline-none transition"
+                        style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
                       >
                         {monthNames.map((name, index) => (
-                          <option key={name} value={index} className="bg-slate-950 text-slate-100">
+                          <option key={name} value={index}>
                             {name}
                           </option>
                         ))}
@@ -319,26 +325,28 @@ export function BuilderForm() {
                       <select
                         value={calendarYear}
                         onChange={(event) => setCalendarReference(new Date(Number(event.target.value), calendarMonth, 1))}
-                        className="rounded-2xl border border-slate-700 bg-slate-900/80 px-2 py-1.5 text-xs text-slate-100 outline-none transition focus:border-brand-500"
+                        className="rounded-2xl px-2 py-1.5 text-xs outline-none transition"
+                        style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
                       >
                         {yearOptions.map((year) => (
-                          <option key={year} value={year} className="bg-slate-950 text-slate-100">
+                          <option key={year} value={year}>
                             {year}
                           </option>
                         ))}
                       </select>
                     </div>
-                    <p className="text-center text-xs uppercase tracking-[0.35em] text-slate-500">Choose month / year</p>
+                    <p className="text-center text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Choose month / year</p>
                   </div>
                   <button
                     type="button"
                     onClick={() => moveCalendar('next')}
-                    className="rounded-xl border border-slate-700 bg-slate-800/80 px-2 py-1.5 text-slate-300 hover:border-brand-500 hover:text-white"
+                    className="rounded-xl px-2 py-1.5"
+                    style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--muted)' }}
                   >
                     ›
                   </button>
                 </div>
-                <div className="grid grid-cols-7 gap-2 text-center text-xs uppercase tracking-[0.25em] text-slate-500">
+                <div className="grid grid-cols-7 gap-2 text-center text-xs uppercase tracking-[0.25em]" style={{ color: 'var(--muted)' }}>
                   {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
                     <div key={day}>{day}</div>
                   ))}
@@ -355,11 +363,12 @@ export function BuilderForm() {
                         key={day}
                         type="button"
                         onClick={() => applyCalendarDate(day)}
-                        className={`rounded-2xl px-2 py-1.5 text-xs transition ${
+                        className={`rounded-2xl px-2 py-1.5 text-xs transition`}
+                        style={
                           selected
-                            ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/20'
-                            : 'bg-slate-900/90 text-slate-200 hover:bg-slate-800/80 hover:text-white'
-                        }`}
+                            ? { background: 'var(--brand-500, #6366f1)', color: '#fff', boxShadow: '0 10px 20px rgba(99,102,241,0.12)' }
+                            : { background: 'var(--surface)', color: 'var(--text)' }
+                        }
                       >
                         {day}
                       </button>
@@ -372,7 +381,7 @@ export function BuilderForm() {
           {errors.startDate && <p className="text-xs text-rose-400">{errors.startDate.message}</p>}
         </label>
 
-        <label className="relative space-y-2 text-sm text-slate-200">
+        <label className="relative space-y-2 text-sm" style={{ color: 'var(--muted)' }}>
           <span className="font-medium">End date</span>
           <div className="relative">
             <button
@@ -382,24 +391,27 @@ export function BuilderForm() {
                 setActiveDateField('end');
                 setCalendarReference(endDateValue ? new Date(endDateValue) : new Date());
               }}
-              className="w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-left text-slate-100 transition hover:border-brand-500"
+              className="w-full rounded-3xl px-4 py-3 text-left transition"
+              style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
             >
               <div className="flex items-center justify-between gap-2">
                 <span>{formatDateLabel(endDateValue)}</span>
-                <CalendarDays className="h-5 w-5 text-slate-400" />
+                <CalendarDays className="h-5 w-5" style={{ color: 'var(--muted)' }} />
               </div>
             </button>
             <input type="hidden" {...register('endDate')} />
             {calendarOpen && activeDateField === 'end' ? (
               <div
                 ref={datePanelRef}
-                className="absolute left-0 top-full z-20 mt-3 w-full max-w-md rounded-3xl border border-brand-500 bg-slate-950/95 p-3 shadow-[0_24px_60px_rgba(15,23,42,0.35)]"
+                className="absolute left-0 top-full z-20 mt-3 w-full max-w-md rounded-3xl p-3 shadow-[0_24px_60px_rgba(15,23,42,0.35)]"
+                style={{ border: '1px solid var(--border)', background: 'var(--surface-2)', color: 'var(--text)' }}
               >
-                <div className="mb-3 grid gap-2 rounded-3xl border border-slate-700 bg-slate-900/80 p-3 text-slate-200 sm:grid-cols-[auto_1fr_auto] sm:items-center">
+                <div className="mb-3 grid gap-2 rounded-3xl p-3 sm:grid-cols-[auto_1fr_auto] sm:items-center" style={{ border: '1px solid var(--border)', background: 'var(--surface)' }}>
                   <button
                     type="button"
                     onClick={() => moveCalendar('prev')}
-                    className="rounded-xl border border-slate-700 bg-slate-800/80 px-2 py-1.5 text-slate-300 hover:border-brand-500 hover:text-white"
+                    className="rounded-xl px-2 py-1.5"
+                    style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--muted)' }}
                   >
                     ‹
                   </button>
@@ -408,10 +420,11 @@ export function BuilderForm() {
                       <select
                         value={calendarMonth}
                         onChange={(event) => setCalendarReference(new Date(calendarYear, Number(event.target.value), 1))}
-                        className="rounded-2xl border border-slate-700 bg-slate-900/80 px-2 py-1.5 text-xs text-slate-100 outline-none transition focus:border-brand-500"
+                        className="rounded-2xl px-2 py-1.5 text-xs outline-none transition"
+                        style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
                       >
                         {monthNames.map((name, index) => (
-                          <option key={name} value={index} className="bg-slate-950 text-slate-100">
+                          <option key={name} value={index}>
                             {name}
                           </option>
                         ))}
@@ -419,26 +432,28 @@ export function BuilderForm() {
                       <select
                         value={calendarYear}
                         onChange={(event) => setCalendarReference(new Date(Number(event.target.value), calendarMonth, 1))}
-                        className="rounded-2xl border border-slate-700 bg-slate-900/80 px-2 py-1.5 text-xs text-slate-100 outline-none transition focus:border-brand-500"
+                        className="rounded-2xl px-2 py-1.5 text-xs outline-none transition"
+                        style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
                       >
                         {yearOptions.map((year) => (
-                          <option key={year} value={year} className="bg-slate-950 text-slate-100">
+                          <option key={year} value={year}>
                             {year}
                           </option>
                         ))}
                       </select>
                     </div>
-                    <p className="text-center text-xs uppercase tracking-[0.35em] text-slate-500">Choose month / year</p>
+                    <p className="text-center text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Choose month / year</p>
                   </div>
                   <button
                     type="button"
                     onClick={() => moveCalendar('next')}
-                    className="rounded-xl border border-slate-700 bg-slate-800/80 px-2 py-1.5 text-slate-300 hover:border-brand-500 hover:text-white"
+                    className="rounded-xl px-2 py-1.5"
+                    style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--muted)' }}
                   >
                     ›
                   </button>
                 </div>
-                <div className="grid grid-cols-7 gap-2 text-center text-xs uppercase tracking-[0.25em] text-slate-500">
+                <div className="grid grid-cols-7 gap-2 text-center text-xs uppercase tracking-[0.25em]" style={{ color: 'var(--muted)' }}>
                   {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
                     <div key={day}>{day}</div>
                   ))}
@@ -455,11 +470,12 @@ export function BuilderForm() {
                         key={day}
                         type="button"
                         onClick={() => applyCalendarDate(day)}
-                        className={`rounded-2xl px-2 py-1.5 text-xs transition ${
+                        className={`rounded-2xl px-2 py-1.5 text-xs transition`}
+                        style={
                           selected
-                            ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/20'
-                            : 'bg-slate-900/90 text-slate-200 hover:bg-slate-800/80 hover:text-white'
-                        }`}
+                            ? { background: 'var(--brand-500, #6366f1)', color: '#fff', boxShadow: '0 10px 20px rgba(99,102,241,0.12)' }
+                            : { background: 'var(--surface)', color: 'var(--text)' }
+                        }
                       >
                         {day}
                       </button>
@@ -473,26 +489,27 @@ export function BuilderForm() {
         </label>
       </div>
 
+
       <div className="grid gap-6 sm:grid-cols-3">
         {watch('investmentType') === 'sip' ? (
-          <label className="space-y-1 text-sm text-slate-200">
+          <label className="space-y-1 text-sm" style={{ color: 'var(--muted)' }}>
             <span className="font-medium">SIP frequency</span>
-            <select className="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100" {...register('sipFrequency')}>
+            <select className="w-full rounded-lg px-3 py-2" style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }} {...register('sipFrequency')}>
               <option value="monthly">Monthly</option>
               <option value="quarterly">Quarterly</option>
               <option value="yearly">Yearly</option>
             </select>
           </label>
         ) : (
-          <div className="space-y-1 text-sm text-slate-400">
+          <div className="space-y-1 text-sm" style={{ color: 'var(--muted)' }}>
             <span className="font-medium">SIP frequency</span>
-            <p className="mt-2 rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-400">Not applicable for Lump Sum</p>
+            <p className="mt-2 rounded-lg px-3 py-2" style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--muted)' }}>Not applicable for Lump Sum</p>
           </div>
         )}
 
-        <label className="space-y-1 text-sm text-slate-200">
+        <label className="space-y-1 text-sm" style={{ color: 'var(--muted)' }}>
           <span className="font-medium">Rebalance</span>
-          <select className="w-full rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2 text-sm text-slate-100" {...register('rebalance')}>
+          <select className="w-full rounded-lg px-3 py-2" style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }} {...register('rebalance')}>
             <option value="none">None</option>
             <option value="monthly">Monthly</option>
             <option value="quarterly">Quarterly</option>
@@ -503,17 +520,17 @@ export function BuilderForm() {
         {/* Allocation total moved below into the Fund allocations header for tighter layout */}
       </div>
 
-      <div className="space-y-4 rounded-3xl border border-white/10 bg-slate-900/80 p-6">
+      <div className="space-y-4 rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)', color: 'var(--text)' }}>
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <p className="text-lg font-semibold text-white">Fund allocations</p>
-            <p className="text-sm text-slate-400">Adjust weights to total 100%</p>
+            <p className="text-lg font-semibold" style={{ color: 'var(--text)' }}>Fund allocations</p>
+            <p className="text-sm" style={{ color: 'var(--muted)' }}>Adjust weights to total 100%</p>
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center justify-center rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-2">
+            <div className="flex items-center justify-center rounded-lg px-3 py-2" style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}>
               <div className="text-center">
-                <p className="text-xs font-medium text-slate-300">Allocation total</p>
-                <p className="mt-1 text-lg font-semibold text-white">{allocationSumRounded}%</p>
+                <p className="text-xs font-medium" style={{ color: 'var(--muted)' }}>Allocation total</p>
+                <p className="mt-1 text-lg font-semibold" style={{ color: 'var(--text)' }}>{allocationSumRounded}%</p>
                 {errors.allocations ? (
                   <p className="mt-1 text-[10px] text-rose-400">{errors.allocations.message}</p>
                 ) : !isAllocationValid ? (
@@ -526,10 +543,10 @@ export function BuilderForm() {
 
         <div className="space-y-4">
           {fields.map((field, index) => (
-            <div key={field.id} className="grid gap-3 rounded-2xl border border-slate-800 bg-slate-950/80 p-3 sm:grid-cols-[1fr_0.8fr_0.6fr]">
+            <div key={field.id} className="grid gap-3 rounded-2xl p-3 sm:grid-cols-[1fr_0.8fr_0.6fr]" style={{ border: '1px solid var(--border)', background: 'var(--surface)' }}>
               <div className="space-y-1">
-                <p className="font-medium text-slate-100">{field.name}</p>
-                <p className="text-sm text-slate-500">{field.category}</p>
+                <p className="font-medium" style={{ color: 'var(--text)' }}>{field.name}</p>
+                <p className="text-sm" style={{ color: 'var(--muted)' }}>{field.category}</p>
               </div>
               <Controller
                 control={control}
@@ -539,7 +556,8 @@ export function BuilderForm() {
                   <input
                     type="number"
                     step="1"
-                    className="w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-3 py-2 text-slate-100"
+                    className="w-full rounded-3xl px-3 py-2"
+                    style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
                     name={ctrlField.name}
                     ref={ctrlField.ref}
                     value={ctrlField.value ?? ''}
@@ -553,8 +571,8 @@ export function BuilderForm() {
                 )}
               />
               <div className="space-y-1">
-                <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Allocation</p>
-                <p className="text-sm text-slate-300">{(watchedAllocations?.[index]?.allocation ?? field.allocation)}%</p>
+                <p className="text-xs uppercase tracking-[0.2em]" style={{ color: 'var(--muted)' }}>Allocation</p>
+                <p className="text-sm" style={{ color: 'var(--text)' }}>{(watchedAllocations?.[index]?.allocation ?? field.allocation)}%</p>
               </div>
             </div>
           ))}
@@ -565,7 +583,8 @@ export function BuilderForm() {
         <button
           type="submit"
           disabled={!canAnalyze}
-          className="inline-flex items-center justify-center rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-400 disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50"
+          style={{ background: 'var(--brand-500)', color: 'var(--brand-text, #fff)' }}
         >
           Analyze portfolio
         </button>
@@ -574,7 +593,8 @@ export function BuilderForm() {
             type="button"
             onClick={handleSubmit(onSave)}
             disabled={!currentSeries}
-            className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900/80 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-brand-500 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50"
+            style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
           >
             {saved ? 'Saved' : 'Save scenario'}
           </button>
@@ -583,10 +603,10 @@ export function BuilderForm() {
       </div>
     </form>
     {analysisData ? (
-      <div className="space-y-8 rounded-3xl border border-white/10 bg-slate-950/90 p-6">
-        <div className="rounded-3xl border border-white/10 bg-slate-900/80 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Analysis results</p>
-          <p className="mt-2 text-slate-300">These metrics are generated from mock historical NAV data for the selected funds and date range.</p>
+      <div className="space-y-8 rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)' }}>
+        <div className="rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface)' }}>
+          <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Analysis results</p>
+          <p className="mt-2" style={{ color: 'var(--muted)' }}>These metrics are generated from mock historical NAV data for the selected funds and date range.</p>
         </div>
 
         <MetricsSummary metrics={analysisData.metrics} />
@@ -603,11 +623,11 @@ export function BuilderForm() {
 
         <div className="grid gap-8 xl:grid-cols-[1fr_0.8fr]">
           <HeatmapChart data={analysisData.heatmapData} label="Monthly return heatmap" />
-          <div className="rounded-3xl border border-white/10 bg-slate-900/80 p-6">
-            <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Portfolio summary</p>
-            <p className="mt-4 text-sm text-slate-300">Investment type: {investmentType === 'sip' ? 'SIP' : 'Lump Sum'}</p>
-            <p className="mt-2 text-sm text-slate-300">Rebalance: {watch('rebalance')}</p>
-            <p className="mt-2 text-sm text-slate-300">Allocation total: {allocationSumRounded}%</p>
+          <div className="rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface)' }}>
+            <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Portfolio summary</p>
+            <p className="mt-4 text-sm" style={{ color: 'var(--muted)' }}>Investment type: {investmentType === 'sip' ? 'SIP' : 'Lump Sum'}</p>
+            <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>Rebalance: {watch('rebalance')}</p>
+            <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>Allocation total: {allocationSumRounded}%</p>
           </div>
         </div>
       </div>

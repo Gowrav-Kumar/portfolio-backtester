@@ -14,7 +14,19 @@
   --muted: #94a3b8;
   --surface: rgba(2,6,23,0.95);
   --surface-2: rgba(14,21,45,0.8);
+  --surface-alt: rgba(30,41,59,0.85);
   --border: rgba(255,255,255,0.06);
+  --brand-500: #6366f1;
+  --brand-400: #818cf8;
+  --brand-text: #ffffff;
+  /* Chart colors */
+  --chart-primary: #818cf8;
+  --chart-comparison: #38bdf8;
+  --chart-palette-0: #818cf8;
+  --chart-palette-1: #38bdf8;
+  --chart-palette-2: #f472b6;
+  --chart-palette-3: #22c55e;
+  --chart-palette-4: #eab308;
 }
 
 /* Light theme when `light` class is present on <html> */

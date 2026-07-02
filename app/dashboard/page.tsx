@@ -203,7 +203,7 @@ export default function DashboardPage() {
       {!hasCurrentPortfolio ? (
         <div className="rounded-3xl border border-amber-400/20 bg-amber-500/5 p-6 text-amber-100">
           <p className="text-sm font-semibold text-amber-200">No analyzed portfolio found yet</p>
-          <p className="mt-3 text-sm text-slate-300">
+          <p className="mt-3 text-sm" style={{ color: 'var(--muted)' }}>
             Run an analysis in the <Link href="/builder" className="font-semibold text-amber-200 underline hover:text-amber-100">
               Portfolio Builder
             </Link> or load a saved scenario on the <Link href="/saved" className="font-semibold text-amber-200 underline hover:text-amber-100">Saved</Link> page to populate this dashboard. The charts below currently show a default preview generated from mock NAV series.
@@ -215,18 +215,18 @@ export default function DashboardPage() {
         <div className="space-y-8">
           {savedScenarios.length > 0 ? (
             <div className="mb-8 grid gap-4 lg:grid-cols-[1fr_1.4fr]">
-              <div className="rounded-3xl border border-white/10 bg-slate-950/90 p-6">
-                <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Saved scenarios</p>
-                <p className="mt-3 text-3xl font-semibold text-white">{savedScenarios.length}</p>
-                <p className="mt-2 text-sm text-slate-400">Your saved portfolio scenarios are available here.</p>
+              <div className="rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)' }}>
+                <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Saved scenarios</p>
+                <p className="mt-3 text-3xl font-semibold" style={{ color: 'var(--text)' }}>{savedScenarios.length}</p>
+                <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>Your saved portfolio scenarios are available here.</p>
                 <Link href="/saved" className="mt-4 inline-flex rounded-full bg-brand-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-400">
                   Manage saved scenarios
                 </Link>
               </div>
-              <div className="rounded-3xl border border-white/10 bg-slate-950/90 p-6">
-                <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Comparison target</p>
-                <p className="mt-3 text-xl font-semibold text-white">{comparisonLabel}</p>
-                <p className="mt-2 text-sm text-slate-400">{comparisonMode === 'benchmark' ? 'Current portfolio vs benchmark' : 'Current portfolio vs saved scenario'}</p>
+              <div className="rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)' }}>
+                <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Comparison target</p>
+                <p className="mt-3 text-xl font-semibold" style={{ color: 'var(--text)' }}>{comparisonLabel}</p>
+                <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>{comparisonMode === 'benchmark' ? 'Current portfolio vs benchmark' : 'Current portfolio vs saved scenario'}</p>
               </div>
             </div>
           ) : null}
@@ -239,14 +239,14 @@ export default function DashboardPage() {
         />
       </div>
           
-      <div className="mb-8 grid gap-4 rounded-3xl border border-white/10 bg-slate-950/90 p-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mb-8 grid gap-4 rounded-3xl p-6 lg:grid-cols-[0.9fr_1.1fr]" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)' }}>
         <div className="space-y-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Primary series</p>
-            <p className="mt-1 text-sm text-slate-500">Select the portfolio to analyze.</p>
+            <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Primary series</p>
+            <p className="mt-1 text-sm" style={{ color: 'var(--muted)' }}>Select the portfolio to analyze.</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <label className="block text-sm text-slate-200">
+            <label className="block text-sm" style={{ color: 'var(--muted)' }}>
               <span className="sr-only">Primary source</span>
               <select
                 value={primaryMode}
@@ -254,7 +254,8 @@ export default function DashboardPage() {
                   setPrimaryMode(event.target.value as 'current' | 'scenario');
                   setPrimaryScenarioId('');
                 }}
-                className="mt-2 w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none transition focus:border-brand-500"
+                className="mt-2 w-full rounded-3xl px-4 py-3 outline-none transition"
+                style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
               >
                 <option value="current">Current portfolio</option>
                 <option value="scenario">Saved scenario</option>
@@ -262,12 +263,13 @@ export default function DashboardPage() {
             </label>
 
             {primaryMode === 'scenario' ? (
-              <label className="block text-sm text-slate-200">
+              <label className="block text-sm" style={{ color: 'var(--muted)' }}>
                 <span className="sr-only">Primary saved scenario</span>
                 <select
                   value={primaryScenarioId}
                   onChange={(event) => setPrimaryScenarioId(event.target.value)}
-                  className="mt-2 w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none transition focus:border-brand-500"
+                  className="mt-2 w-full rounded-3xl px-4 py-3 outline-none transition"
+                  style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
                 >
                   <option value="">Select saved scenario</option>
                   {savedScenarios.map((scenario) => (
@@ -283,11 +285,11 @@ export default function DashboardPage() {
 
         <div className="space-y-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Comparison series</p>
-            <p className="mt-1 text-sm text-slate-500">Choose a benchmark fund or another saved scenario to compare.</p>
+            <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Comparison series</p>
+            <p className="mt-1 text-sm" style={{ color: 'var(--muted)' }}>Choose a benchmark fund or another saved scenario to compare.</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <label className="block text-sm text-slate-200">
+            <label className="block text-sm" style={{ color: 'var(--muted)' }}>
               <span className="sr-only">Comparison source</span>
               <select
                 value={comparisonMode}
@@ -295,7 +297,8 @@ export default function DashboardPage() {
                   setComparisonMode(event.target.value as 'benchmark' | 'scenario');
                   setComparisonScenarioId('');
                 }}
-                className="mt-2 w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none transition focus:border-brand-500"
+                className="mt-2 w-full rounded-3xl px-4 py-3 outline-none transition"
+                style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
               >
                 <option value="benchmark">Benchmark fund</option>
                 <option value="scenario">Saved scenario</option>
@@ -303,12 +306,13 @@ export default function DashboardPage() {
             </label>
 
             {comparisonMode === 'scenario' ? (
-              <label className="block text-sm text-slate-200">
+              <label className="block text-sm" style={{ color: 'var(--muted)' }}>
                 <span className="sr-only">Comparison saved scenario</span>
                 <select
                   value={comparisonScenarioId}
                   onChange={(event) => setComparisonScenarioId(event.target.value)}
-                  className="mt-2 w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none transition focus:border-brand-500"
+                  className="mt-2 w-full rounded-3xl px-4 py-3 outline-none transition"
+                  style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
                 >
                   <option value="">Select saved scenario</option>
                   {savedScenarios.map((scenario) => (
@@ -319,12 +323,13 @@ export default function DashboardPage() {
                 </select>
               </label>
             ) : (
-              <label className="block text-sm text-slate-200">
+              <label className="block text-sm" style={{ color: 'var(--muted)' }}>
                 <span className="sr-only">Benchmark fund</span>
                 <select
                   value={benchmarkId}
                   onChange={(event) => setBenchmarkId(event.target.value)}
-                  className="mt-2 w-full rounded-3xl border border-slate-700 bg-slate-900/80 px-4 py-3 text-slate-100 outline-none transition focus:border-brand-500"
+                  className="mt-2 w-full rounded-3xl px-4 py-3 outline-none transition"
+                  style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}
                 >
                   {mockFunds.map((fund) => (
                     <option key={fund.id} value={fund.id}>
@@ -344,18 +349,18 @@ export default function DashboardPage() {
       </section>
       <section id="performance" className="mt-8 grid gap-8 xl:grid-cols-[1fr_0.8fr]">
         <PortfolioBarChart data={annualReturns} label="Annual returns" />
-        <div className="rounded-3xl border border-white/10 bg-slate-950/90 p-6">
-          <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Performance comparison</p>
-          <p className="mt-3 text-3xl font-semibold text-white">{comparisonSummary.relative.toFixed(2)}%</p>
-          <p className="mt-2 text-sm text-slate-400">Relative versus selected comparison series.</p>
+        <div className="rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)' }}>
+          <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Performance comparison</p>
+          <p className="mt-3 text-3xl font-semibold" style={{ color: 'var(--text)' }}>{comparisonSummary.relative.toFixed(2)}%</p>
+          <p className="mt-2 text-sm" style={{ color: 'var(--muted)' }}>Relative versus selected comparison series.</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-3xl bg-slate-900/80 p-4">
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Primary value</p>
-              <p className="mt-2 text-lg font-semibold text-white">₹{comparisonSummary.primaryValue.toLocaleString('en-IN')}</p>
+            <div className="rounded-3xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+              <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Primary value</p>
+              <p className="mt-2 text-lg font-semibold" style={{ color: 'var(--text)' }}>₹{comparisonSummary.primaryValue.toLocaleString('en-IN')}</p>
             </div>
-            <div className="rounded-3xl bg-slate-900/80 p-4">
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Comparison value</p>
-              <p className="mt-2 text-lg font-semibold text-white">₹{comparisonSummary.comparisonValue.toLocaleString('en-IN')}</p>
+            <div className="rounded-3xl p-4" style={{ background: 'var(--surface)', color: 'var(--text)' }}>
+              <p className="text-xs uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Comparison value</p>
+              <p className="mt-2 text-lg font-semibold" style={{ color: 'var(--text)' }}>₹{comparisonSummary.comparisonValue.toLocaleString('en-IN')}</p>
             </div>
           </div>
         </div>

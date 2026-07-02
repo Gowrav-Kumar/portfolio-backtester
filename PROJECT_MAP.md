@@ -46,7 +46,7 @@ Recent session delta:
 - Temporary debug hooks were used and then removed after verification.
 
 ## Known Gaps / Opportunity Areas
-- A dedicated saved-scenario compare page is not yet implemented
+- A dedicated saved-scenario compare page exists at `app/saved/compare/page.tsx`; improve layout and scenario selection
 - Portfolio export/report generation is placeholder-worthy
 - Data layer is currently mock-only and should be abstracted for later API integration
 - Testing coverage is minimal or absent

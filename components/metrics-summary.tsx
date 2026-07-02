@@ -14,12 +14,12 @@ export function MetricsSummary({ metrics }: { metrics: Array<{ label: string; va
   return (
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {metrics.map((metric) => (
-        <div key={metric.label} className="rounded-3xl border border-white/10 bg-white/5 p-6 text-slate-200">
+        <div key={metric.label} className="rounded-3xl p-6" style={{ border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text)' }}>
           <div className="flex items-center gap-2">
-            <p className="text-sm text-slate-400">{metric.label}</p>
+            <p className="text-sm" style={{ color: 'var(--muted)' }}>{metric.label}</p>
             <InfoTooltip message={metricDefinitions[metric.label] ?? 'Metric explanation not available.'} />
           </div>
-          <p className="mt-4 text-2xl font-semibold text-white">{metric.value}</p>
+          <p className="mt-4 text-2xl font-semibold" style={{ color: 'var(--text)' }}>{metric.value}</p>
         </div>
       ))}
     </div>

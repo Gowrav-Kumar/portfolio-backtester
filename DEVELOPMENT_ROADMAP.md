@@ -21,7 +21,7 @@ Recent progress:
 
 ## High Priority Next Work
 1. **Saved Scenario Comparison Page**
-   - Add a dedicated page that shows multiple saved scenario comparison charts
+   - Improve the existing compare page with richer metrics, clearer scenario selection, and comparison chart layout
    - Include scenario selection, side-by-side metrics, and benchmark overlay
 2. **SIP and Rebalance Accuracy**
    - Enhance `simulatePortfolioSeries` and `calculateAllocationTrendSeries`

@@ -42,7 +42,8 @@ Portfolio BackTrack is a Next.js app for building and analyzing custom index fun
 6. Test comparison selections:
    - Benchmark fund
    - Saved scenario
-7. Open `/saved` and verify scenarios can be loaded and deleted.
+7. Open `/saved` and verify scenarios can be loaded, compared, and deleted.
+8. Open `/saved/compare` and verify saved scenarios can be selected and compared side-by-side.
 
 ## Notes
 
