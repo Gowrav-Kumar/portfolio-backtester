@@ -9,6 +9,7 @@ Portfolio BackTrack is built as a modern single-page financial analytics app usi
 - `app/builder/page.tsx` — portfolio builder shell
 - `app/dashboard/page.tsx` — analytics dashboard
 - `app/saved/page.tsx` — saved scenarios manager
+- `app/saved/compare/page.tsx` — dedicated saved scenario comparison page
 - `app/docs/page.tsx` — documentation placeholder
 - `app/settings/page.tsx` — settings placeholder
 - `app/not-found.tsx` — custom 404 page
@@ -51,6 +52,9 @@ Portfolio BackTrack is built as a modern single-page financial analytics app usi
   - `comparePortfolioWithBenchmark`
   - `combinePortfolioSeries`
   - `simulatePortfolioSeries`
+  
+Recent notes:
+- The analytics engine remains the single source of truth for metric calculations. During the current session allocation validation and builder wiring were improved; ensure future changes keep business logic centralized in `lib/portfolio.ts` and avoid duplicating calculation code in components.
 
 ## UI Layer
 - Shared layout and navigation components in `components/`

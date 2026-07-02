@@ -27,6 +27,7 @@ This folder contains route-driven pages implemented with Next.js App Router.
 - `builder/builder-form.tsx` — builder form and simulation logic
 - `dashboard/page.tsx` — analytics dashboard route
 - `saved/page.tsx` — saved scenario manager route
+- `saved/compare/page.tsx` — saved scenario comparison route
 - `settings/page.tsx` — placeholder settings route
 - `docs/page.tsx` — placeholder docs route
 - `not-found.tsx` — custom 404 page
@@ -58,6 +59,9 @@ Mock data generation and fund series definitions.
 ## lib/
 Business logic and analytics utilities.
 - `portfolio.ts` — portfolio simulation engine and financial calculation helper library
+
+Notes:
+- Keep business logic in `lib/portfolio.ts`. The Builder UI (`app/builder/builder-form.tsx`) wires form inputs to these utilities — avoid duplicating formulas in UI code.
 
 ## store/
 Client state and persistence store.

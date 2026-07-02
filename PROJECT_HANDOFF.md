@@ -8,9 +8,11 @@ This document is the primary AI handoff package for Portfolio BackTrack. It prov
 - **Portfolio builder** with validation for allocations, SIP, and rebalance options
 - **Saved scenarios** persisted to browser storage via Zustand
 - **Dashboard analytics** including growth, allocation, drawdown, rolling returns, annual returns, allocation exposure, and monthly heatmap
-- **Comparison support** via benchmark funds and saved scenario compare mode
+- **Dedicated saved scenario compare page** at `app/saved/compare/page.tsx`
+- **Dashboard comparison support** via benchmark funds, saved scenario compare mode, and query-param driven comparisons
 - **UI polish** with theme toggle, command palette, breadcrumbs, dashboard sidebar, modern dark theme, and glassmorphism design
-- **Quality validation**: `npm run build` and `npm run lint -- --max-warnings=0` pass
+- **Quality validation**: `npm run build` passes after recent fixes
+- **Recent fixes**: allocation inputs now update RHF state immediately while typing/backspacing, allocation total rounding/tolerance added, calendar popup implemented, theme toggle delay eliminated, and temporary debug hooks removed.
 
 ## Project Artifacts
 - `README.md` — run instructions and manual verification steps
@@ -22,7 +24,7 @@ This document is the primary AI handoff package for Portfolio BackTrack. It prov
 - `tailwind.config.ts` — theme, dark mode, and utility settings
 
 ## Primary Next Actions
-1. Add a dedicated saved scenario comparison page and better comparison UI flows
+1. Enhance the saved scenario comparison page with richer charts, metrics, and scenario selection feedback
 2. Improve SIP/rebalancing simulation logic and portfolio engine accuracy
 3. Add export/report placeholders for CSV, PDF, image output
 4. Refine mock NAV realism or swap to API-driven historical data
@@ -40,6 +42,7 @@ This document is the primary AI handoff package for Portfolio BackTrack. It prov
 - `app/builder/builder-form.tsx` — portfolio builder form and simulation
 - `app/dashboard/page.tsx` — analytics dashboard
 - `app/saved/page.tsx` — saved scenarios manager
+- `app/saved/compare/page.tsx` — dedicated scenario compare page
 - `app/page.tsx` — landing page
 - `components/*` — shared UI and navigation components
 - `charts/*` — reusable Recharts components

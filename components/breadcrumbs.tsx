@@ -9,11 +9,11 @@ type BreadcrumbItem = {
 
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav className="text-sm text-slate-400" aria-label="Breadcrumb">
+    <nav className="text-sm" aria-label="Breadcrumb" style={{ color: 'var(--muted)' }}>
       <ol className="flex flex-wrap gap-2">
         {items.map((item, index) => (
           <li key={item.href} className="flex items-center gap-2">
-            <Link href={item.href} className="hover:text-white transition">
+            <Link href={item.href} className="hover:text-white transition" style={{ color: 'var(--muted)' }}>
               {item.label}
             </Link>
             {index < items.length - 1 ? <span aria-hidden="true">/</span> : null}

@@ -15,14 +15,15 @@ const items: SidebarItem[] = [
 
 export function DashboardSidebar() {
   return (
-    <aside className="hidden w-72 shrink-0 rounded-3xl border border-white/10 bg-slate-950/90 p-6 xl:block">
-      <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Dashboard menu</p>
+    <aside className="hidden w-72 shrink-0 rounded-3xl p-6 xl:block" style={{ border: '1px solid var(--border)', background: 'var(--surface-2)', color: 'var(--text)' }}>
+      <p className="text-sm uppercase tracking-[0.35em]" style={{ color: 'var(--muted)' }}>Dashboard menu</p>
       <nav className="mt-6 space-y-3">
         {items.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className="block rounded-2xl px-4 py-3 text-sm text-slate-200 transition hover:bg-slate-900 hover:text-white"
+            className="block rounded-2xl px-4 py-3 text-sm transition"
+            style={{ color: 'var(--text)' }}
           >
             {item.label}
           </a>

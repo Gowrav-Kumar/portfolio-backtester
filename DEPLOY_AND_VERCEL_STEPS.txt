@@ -1,0 +1,55 @@
+Commit and Deploy Steps - Portfolio BackTester
+
+1) Create or change files locally
+   - Edit code or create files in the project working directory.
+
+2) Quick local check
+   - Run lint/build/tests locally to catch issues:
+     npm ci
+     npm run build
+
+3) Stage and commit (quick path)
+   git add -A
+   git commit -m "chore: describe changes briefly"
+
+4) Recommended branch workflow (safer)
+   git checkout -b feature/brief-description
+   git add -A
+   git commit -m "feat: short summary"
+   git push -u origin feature/brief-description
+   # Open a PR on GitHub and merge to main when ready
+
+5) Direct push to production (if you want immediate deploy)
+   git checkout main
+   git pull origin main
+   git merge --no-ff feature/brief-description   # optional if merging locally
+   git add -A
+   git commit -m "chore: merge feature/brief-description"
+   git push origin main
+
+6) Vercel behavior (automatic)
+   - Vercel will detect pushes to your repo and create deployments automatically.
+   - Push to a branch → Vercel creates a preview deployment.
+   - Push or merge to `main` → Vercel runs the production build and updates the live site.
+
+7) Manual deploy with Vercel CLI (optional)
+   npm i -g vercel
+   vercel login
+   vercel --prod    # deploy current folder as production
+
+8) Verify deployment
+   - Open the Vercel dashboard → Project → Deployments and watch the latest build logs.
+   - Visit the production URL shown in the deployment entry and test key flows.
+
+9) Troubleshooting
+   - If build fails: open Vercel build logs, reproduce locally with `npm run build` and fix errors.
+   - For environment variables: set them in Vercel Project → Settings → Environment Variables.
+   - To rollback: redeploy a previous successful commit from the Vercel dashboard.
+
+10) Post-deploy smoke test
+   - Confirm main features work (builder page, charts, allocation UI) in production.
+   - If something breaks, revert or patch and push again.
+
+Notes
+- Keep commits small and message concise.
+- Use branch + PR workflow for safer, reviewable updates.

@@ -42,9 +42,24 @@ Portfolio BackTrack is a Next.js app for building and analyzing custom index fun
 6. Test comparison selections:
    - Benchmark fund
    - Saved scenario
-7. Open `/saved` and verify scenarios can be loaded and deleted.
+7. Open `/saved` and verify scenarios can be loaded, compared, and deleted.
+8. Open `/saved/compare` and verify saved scenarios can be selected and compared side-by-side.
 
 ## Notes
 
 - `PROJECT_SUMMARY.md` contains the current project status and feature summary.
 - `requirements_plan.txt` tracks phase progress and remaining goals.
+ 
+## Important notes about data and current behaviors
+
+- The app uses synthetic mock NAV data from `data/mock-nav.ts` for development and testing. This is not production market data — see `DATA_LAYER.md` for guidance on adding a real data source.
+
+## Quick verification steps (allocation behavior)
+
+To verify the allocation input behavior (typing/backspace), open the builder and perform this sequence:
+
+1. Navigate to `/builder`.
+2. For the first allocation input (Large Cap), change the value from `50` to `5` by deleting the last digit, and confirm the `Allocation total` updates to reflect `5,30,20` (should show `55%`) and `Analyze portfolio` is disabled.
+3. Type `2` to make the first allocation `52` and confirm the total updates to `102%` and `Analyze portfolio` remains disabled.
+
+These checks validate the immediate update behavior implemented in the recent session.
