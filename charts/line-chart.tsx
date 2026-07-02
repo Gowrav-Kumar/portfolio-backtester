@@ -2,6 +2,7 @@
 
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { formatRupee } from '@/lib/format';
+import React from 'react';
 
 type LineChartProps = {
   data: Array<{ date: string; value: number; comparisonValue?: number }>;
@@ -38,13 +39,7 @@ export function PortfolioLineChart({ data, label, comparisonLabel, valueFormatte
               axisLine={false}
               tickFormatter={(value) => (valueFormatter ? valueFormatter(Number(value ?? 0)) : formatRupee(Number(value ?? 0)))}
             />
-            <Tooltip
-              formatter={(value) => [
-                valueFormatter ? valueFormatter(Number(value ?? 0)) : formatRupee(Number(value ?? 0)),
-                'Value'
-              ]}
-              labelFormatter={(label) => `Date: ${label}`}
-            />
+            <Tooltip content={<CustomTooltip valueFormatter={valueFormatter} comparisonLabel={comparisonLabel} />} />
             <Line type="monotone" dataKey="value" stroke="#818cf8" strokeWidth={3} dot={false} />
             {comparisonLabel ? (
               <Line
@@ -60,6 +55,22 @@ export function PortfolioLineChart({ data, label, comparisonLabel, valueFormatte
           </LineChart>
         </ResponsiveContainer>
       </div>
+    </div>
+  );
+}
+
+function CustomTooltip({ active, payload, label, valueFormatter, comparisonLabel }: any) {
+  if (!active || !payload || !payload.length) return null;
+  const primary = payload.find((p: any) => p.dataKey === 'value');
+  const comparison = payload.find((p: any) => p.dataKey === 'comparisonValue');
+
+  return (
+    <div className="rounded-md bg-slate-900/95 p-3 text-sm text-slate-100 border border-slate-700">
+      <div className="text-xs text-slate-400">Date: {label}</div>
+      <div className="mt-1">Primary: {valueFormatter ? valueFormatter(primary?.value ?? 0) : formatRupee(primary?.value ?? 0)}</div>
+      {comparison && comparison.value !== undefined ? (
+        <div className="mt-1">{comparisonLabel ?? 'Comparison'}: {valueFormatter ? valueFormatter(comparison.value) : formatRupee(comparison.value)}</div>
+      ) : null}
     </div>
   );
 }

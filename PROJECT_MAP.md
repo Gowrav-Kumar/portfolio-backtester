@@ -41,6 +41,10 @@
 - Recharts for charting
 - React Hook Form + Zod for validation
 
+Recent session delta:
+- Builder form: allocation immediate-update fixes, calendar popup, allocation total moved into header, and improved gating for `Analyze`.
+- Temporary debug hooks were used and then removed after verification.
+
 ## Known Gaps / Opportunity Areas
 - A dedicated saved-scenario compare page is not yet implemented
 - Portfolio export/report generation is placeholder-worthy

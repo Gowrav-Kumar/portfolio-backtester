@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm, useFieldArray, Controller } from 'react-hook-form';
 import { CalendarDays } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -70,7 +70,7 @@ export function BuilderForm() {
     handleSubmit,
     watch,
     setValue,
-    formState: { errors, isValid }
+    formState: { errors }
   } = useForm<PortfolioFormValues>({
     mode: 'onChange',
     reValidateMode: 'onChange',

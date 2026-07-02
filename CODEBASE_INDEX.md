@@ -54,6 +54,11 @@
 ## Lib Folder
 - `lib/portfolio.ts` — portfolio calculation utilities, simulation engine, benchmark comparison, and metric helpers
 
+- `CHANGELOG.md` — project change log and session summaries (added)
+- `CALCULATION_ENGINE.md` — documentation for the calculation utilities (added)
+- `DATA_LAYER.md` — documentation for mock data and recommended data layer changes (added)
+- `UI_SYSTEM.md` — documentation for UI components and theme (added)
+
 ## Store Folder
 - `store/portfolio-store.ts` — Zustand store for current portfolio, saved scenarios, and persistence middleware
 

@@ -32,10 +32,20 @@ Portfolio BackTrack is a fintech-style portfolio backtesting web app built with 
 - `eslint` — linting
 
 ## Current Implementation Notes
-- The dashboard uses client-side query parsing in `useEffect` to support `?compare=<id>` behavior
-- `saved` page supports loading and deleting scenarios, as well as direct compare links to the dashboard
-- `builder-form` validates allocation totals with Zod and can save scenarios after analysis
-- Some pages remain placeholder UIs (`/settings`, `/docs`, landing page content) and are not fully functional features
+- The dashboard uses client-side query parsing in `useEffect` to support `?compare=<id>` behavior.
+- The `saved` page supports loading and deleting scenarios, and provides compare links to the dashboard.
+- `app/builder/builder-form.tsx` is the primary builder form; it uses `react-hook-form` + `zod` for validation and now uses controlled `Controller` inputs with `onInput` to ensure allocation values update immediately while typing/backspacing. The allocation total logic was made resilient to floating point noise and moved visually into the Fund allocations header.
+- Calendar selection for dates was changed from native `<input type="date">` to a themed popup calendar with month/year quick selectors.
+- Temporary debug hooks were used during development but have been removed; recent builds succeeded.
+- Some pages remain placeholder UIs (`/settings`, `/docs`, landing page content) and are not fully functional features.
+
+## Recent Session Work (summary)
+- Fixed allocation input binding so allocation totals update immediately while typing/backspacing and `Analyze portfolio` is gated correctly.
+- Implemented a themed calendar popup with compact month/year selectors for `startDate` and `endDate` fields.
+- Repositioned the Allocation total card into the Fund allocations header and tightened UI spacing.
+- Added tolerant numeric equality for allocation total (rounded to 2 decimals) and local validity gating for faster UI response.
+- Removed temporary debug exports and rebuilt successfully.
+- Added plan items for Playwright e2e tests and unit test coverage (not yet implemented).
 
 ## Hand-off Guidance
 - Preserve the current app structure and path aliases when adding new files

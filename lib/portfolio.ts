@@ -247,19 +247,47 @@ export function calculateXIRR(cashFlows: { date: string; amount: number }[]) {
   return Number((rate * 100).toFixed(2));
 }
 
+export function alignSeriesByDate(...seriesList: TimeSeriesPoint[][]) {
+  if (!seriesList.length) return [];
+
+  const allDates = Array.from(
+    new Set(seriesList.flatMap((series) => series.map((point) => point.date)))
+  ).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
+  return seriesList.map((series) => {
+    const pointMap = new Map(series.map((point) => [point.date, point.value]));
+    let lastValue: number | undefined;
+
+    return allDates.map((date) => {
+      if (pointMap.has(date)) {
+        lastValue = pointMap.get(date);
+      }
+
+      return {
+        date,
+        value: lastValue !== undefined ? lastValue : 0
+      };
+    });
+  });
+}
+
 export function comparePortfolioWithBenchmark(
   portfolioSeries: TimeSeriesPoint[],
   benchmarkSeries: TimeSeriesPoint[]
 ) {
   if (!portfolioSeries.length || !benchmarkSeries.length) return [];
-  const benchmarkMap = new Map(benchmarkSeries.map((point) => [point.date, point.value]));
-  const multiplier =
-    benchmarkSeries[0]?.value !== 0 ? portfolioSeries[0].value / benchmarkSeries[0].value : 1;
 
-  return portfolioSeries.map((point) => ({
+  const [alignedPortfolio, alignedBenchmark] = alignSeriesByDate(portfolioSeries, benchmarkSeries);
+  const firstValidIndex = alignedBenchmark.findIndex((point) => point.value !== 0);
+  const multiplier =
+    firstValidIndex >= 0 && alignedBenchmark[firstValidIndex].value !== 0
+      ? alignedPortfolio[firstValidIndex].value / alignedBenchmark[firstValidIndex].value
+      : 1;
+
+  return alignedPortfolio.map((point, index) => ({
     date: point.date,
     value: point.value,
-    comparisonValue: Number(((benchmarkMap.get(point.date) ?? 0) * multiplier).toFixed(2))
+    comparisonValue: Number(((alignedBenchmark[index]?.value ?? 0) * multiplier).toFixed(2))
   }));
 }
 

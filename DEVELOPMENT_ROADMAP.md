@@ -14,6 +14,11 @@
   - Saved scenario comparison wiring and route integration
   - Legend and UI messaging refinement
 
+Recent progress:
+- Allocation input binding and immediate validation fixes completed.
+- The date calendar popup and allocation UI reposition were implemented.
+- Temporary debug hooks have been removed and builds pass.
+
 ## High Priority Next Work
 1. **Saved Scenario Comparison Page**
    - Add a dedicated page that shows multiple saved scenario comparison charts
@@ -52,3 +57,4 @@
 - Improve `ThemeToggle` to support system preference on initial load
 - Document `lib/portfolio.ts` formulas and any assumptions in code comments
 - Add `app/builder/form-status.tsx` message area for analysis/save feedback
+- Add Playwright e2e test for allocation typing/backspace scenario (50 -> backspace -> 5 -> type 2)

@@ -77,6 +77,15 @@ export default function SavedPage() {
           </div>
         ))}
       </div>
+      {savedScenarios.length > 1 ? (
+        <div className="mt-10 rounded-3xl border border-white/10 bg-slate-950/90 p-6">
+          <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Compare saved scenarios</p>
+          <p className="mt-3 text-sm text-slate-400">Compare two saved scenarios on the dedicated compare page.</p>
+          <Link href="/saved/compare" className="mt-4 inline-flex rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-400">
+            Compare scenarios
+          </Link>
+        </div>
+      ) : null}
       <div className="mt-10">
         <Link href="/builder" className="inline-flex rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-400">
           Build another scenario

@@ -59,6 +59,9 @@ Mock data generation and fund series definitions.
 Business logic and analytics utilities.
 - `portfolio.ts` — portfolio simulation engine and financial calculation helper library
 
+Notes:
+- Keep business logic in `lib/portfolio.ts`. The Builder UI (`app/builder/builder-form.tsx`) wires form inputs to these utilities — avoid duplicating formulas in UI code.
+
 ## store/
 Client state and persistence store.
 - `portfolio-store.ts` — Zustand store for current portfolio, saved scenarios, and persistence

@@ -11,6 +11,7 @@ This document is the primary AI handoff package for Portfolio BackTrack. It prov
 - **Comparison support** via benchmark funds and saved scenario compare mode
 - **UI polish** with theme toggle, command palette, breadcrumbs, dashboard sidebar, modern dark theme, and glassmorphism design
 - **Quality validation**: `npm run build` and `npm run lint -- --max-warnings=0` pass
+- **Recent fixes**: allocation inputs now update RHF state immediately while typing/backspacing (Controller + onInput), allocation total rounding/tolerance added, calendar popup implemented, allocation total moved into Fund allocations header, and temporary debug hooks removed.
 
 ## Project Artifacts
 - `README.md` — run instructions and manual verification steps
