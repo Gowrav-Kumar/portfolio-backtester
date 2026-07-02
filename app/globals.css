@@ -12,6 +12,9 @@
   --bg: #020617;
   --text: #f8fafc;
   --muted: #94a3b8;
+  --surface: rgba(2,6,23,0.95);
+  --surface-2: rgba(14,21,45,0.8);
+  --border: rgba(255,255,255,0.06);
 }
 
 /* Light theme when `light` class is present on <html> */
@@ -23,6 +26,9 @@ html.light {
   --bg: #ffffff;
   --text: #0f172a;
   --muted: #475569;
+  --surface: rgba(255,255,255,0.95);
+  --surface-2: rgba(248,250,252,0.9);
+  --border: rgba(15,23,42,0.06);
 }
 
 /* Quick light-mode overrides for existing Tailwind utility classes (applies when html.light is present).
