@@ -206,7 +206,7 @@ export default function DashboardPage() {
           <p className="mt-3 text-sm text-slate-300">
             Run an analysis in the <Link href="/builder" className="font-semibold text-amber-200 underline hover:text-amber-100">
               Portfolio Builder
-            </Link> to load live portfolio results here. The charts below currently show a default preview.
+            </Link> or load a saved scenario on the <Link href="/saved" className="font-semibold text-amber-200 underline hover:text-amber-100">Saved</Link> page to populate this dashboard. The charts below currently show a default preview generated from mock NAV series.
           </p>
         </div>
       ) : null}
@@ -230,7 +230,7 @@ export default function DashboardPage() {
               </div>
             </div>
           ) : null}
-          <div className="mb-6">
+          <div className="mb-6" id="overview">
         <Breadcrumbs
           items={[
             { href: '/', label: 'Home' },
@@ -238,6 +238,7 @@ export default function DashboardPage() {
           ]}
         />
       </div>
+          
       <div className="mb-8 grid gap-4 rounded-3xl border border-white/10 bg-slate-950/90 p-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="space-y-4">
           <div>

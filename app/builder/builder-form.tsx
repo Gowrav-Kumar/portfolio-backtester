@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm, useFieldArray, Controller } from 'react-hook-form';
 import { CalendarDays } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { PortfolioFormValues } from '@/types/portfolio';
+import { allocationSchema, formSchema } from '@/lib/form';
 import { getFundSeries } from '@/data/mock-nav';
 import {
   simulatePortfolioSeries,
@@ -30,32 +30,7 @@ import { HeatmapChart } from '@/charts/heatmap-chart';
 import { MetricsSummary } from '@/components/metrics-summary';
 import { usePortfolioStore } from '@/store/portfolio-store';
 
-const allocationSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  category: z.enum(['Large Cap', 'Mid Cap', 'Small Cap']),
-  allocation: z.number().min(0).max(100)
-});
-
-const formSchema = z.object({
-  scenarioName: z.string().min(3, 'Scenario name is required'),
-  totalInvestment: z.number().min(1000, 'Minimum investment is 1,000'),
-  investmentType: z.enum(['lumpSum', 'sip']),
-  sipFrequency: z.enum(['monthly', 'quarterly', 'yearly']),
-  startDate: z.string().min(1, 'Start date is required'),
-  endDate: z.string().min(1, 'End date is required'),
-  rebalance: z.enum(['none', 'monthly', 'quarterly', 'yearly']),
-  allocations: z.array(allocationSchema).superRefine((allocations, ctx) => {
-    const total = allocations.reduce((sum, item) => sum + item.allocation, 0);
-    if (total !== 100) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: 'Total allocation must equal 100%',
-        path: ['allocations']
-      });
-    }
-  })
-});
+// formSchema and allocationSchema are imported from lib/form.ts
 
 const defaultAllocations: PortfolioFormValues['allocations'] = [
   { id: 'large-1', name: 'Large Cap Fund A', category: 'Large Cap', allocation: 50 },

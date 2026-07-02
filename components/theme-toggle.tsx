@@ -5,18 +5,21 @@ import { useEffect, useState } from 'react';
 const STORAGE_KEY = 'portfolio-backtrack-theme';
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY) as 'light' | 'dark' | null;
-    const initialTheme = stored ?? 'dark';
-    setTheme(initialTheme);
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-  }, []);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      const stored = window.localStorage.getItem(STORAGE_KEY) as 'light' | 'dark' | null;
+      if (stored) return stored;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    } catch (e) {
+      return 'dark';
+    }
+  });
 
   useEffect(() => {
     if (!theme) return;
+    // Persist and apply class flags. Keep both `dark` (Tailwind) and `light` (CSS vars) in sync.
     window.localStorage.setItem(STORAGE_KEY, theme);
+    document.documentElement.classList.toggle('light', theme === 'light');
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
